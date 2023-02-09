@@ -2,7 +2,6 @@ import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -58,13 +57,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             children: [
               TextFormField(
                 controller: textController1,
-                onChanged: (_) => EasyDebounce.debounce(
-                  'textController1',
-                  Duration(milliseconds: 2000),
-                  () async {
-                    FFAppState().Email = textController1!.text;
-                  },
-                ),
                 autofocus: true,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -133,15 +125,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   final textFieldLoginResponse = snapshot.data!;
                   return TextFormField(
                     controller: textController2,
-                    onChanged: (_) => EasyDebounce.debounce(
-                      'textController2',
-                      Duration(milliseconds: 2000),
-                      () async {
-                        setState(() {
-                          FFAppState().Password = textController2!.text;
-                        });
-                      },
-                    ),
                     autofocus: true,
                     obscureText: false,
                     decoration: InputDecoration(
@@ -199,12 +182,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     email: textController1!.text,
                     password: textController2!.text,
                   );
-                  FFAppState().update(() {
-                    FFAppState().Email = textController1!.text;
-                    FFAppState().Password = textController2!.text;
-                  });
+                  if ((apiResulttd1?.succeeded ?? true)) {
+                    FFAppState().Token = FFAppState().Token;
 
-                  context.pushNamed('dashboard');
+                    context.pushNamed('dashboard');
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Error',
+                          style: TextStyle(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                        ),
+                        duration: Duration(milliseconds: 4000),
+                        backgroundColor: Color(0x00000000),
+                      ),
+                    );
+                  }
 
                   setState(() {});
                 },

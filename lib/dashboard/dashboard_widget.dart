@@ -75,7 +75,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       }
                       final textLoginResponse = snapshot.data!;
                       return Text(
-                        FFAppState().Email,
+                        FFAppState().Token,
                         style: FlutterFlowTheme.of(context).bodyText1,
                       );
                     },
