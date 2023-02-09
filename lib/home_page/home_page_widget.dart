@@ -7,14 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({
-    Key? key,
-    this.pEmail,
-    this.pPassword,
-  }) : super(key: key);
-
-  final FFLocalFile? pEmail;
-  final FFLocalFile? pPassword;
+  const HomePageWidget({Key? key}) : super(key: key);
 
   @override
   _HomePageWidgetState createState() => _HomePageWidgetState();

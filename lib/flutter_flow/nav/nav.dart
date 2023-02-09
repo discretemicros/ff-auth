@@ -39,10 +39,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'HomePage',
               path: 'homePage',
-              builder: (context, params) => HomePageWidget(
-                pEmail: params.getParam('pEmail', ParamType.FFLocalFile),
-                pPassword: params.getParam('pPassword', ParamType.FFLocalFile),
-              ),
+              builder: (context, params) => HomePageWidget(),
             ),
             FFRoute(
               name: 'dashboard',
